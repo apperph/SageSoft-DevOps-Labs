@@ -46,12 +46,17 @@ You will receive an error because the S3 bucket name is not unique (S3 bucket na
 ```
 
 4. Create a Stack Using a Dynamic CloudFormation Template
+
 3-a. Create the Dynamic Template
+```
 Create a file named dynamic-cf.yml.
+```
 Copy the template from: https://github.com/mikerayco/cf-templates-demo/blob/master/dynamic-template.yml
 
 3-b. Create a New Stack with the Dynamic Template
-aws cloudformation create-stack --stack-name dynamic-demo --template-body file://dynamic-cf.yml
+
+```aws cloudformation create-stack --stack-name dynamic-demo --template-body file://dynamic-cf.yml
+```
 
 3-c. Verify Stack Creation
 Go to the CloudFormation Console and check the dynamic-demo stack.
