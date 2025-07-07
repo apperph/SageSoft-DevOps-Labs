@@ -27,7 +27,8 @@ This lab activity demonstrates how to create CloudFormation stacks using the AWS
    ```yaml
    BucketName: your-stack-bucketname-xyz123
 1-b. Create the Stack
-aws cloudformation create-stack --stack-name cf-demo --template-body file://static-cf.yml
+   ```yaml
+   aws cloudformation create-stack --stack-name cf-demo --template-body file://static-cf.yml
 1-c. Validate Stack Creation
 Go to the CloudFormation Console.
 Confirm that the cf-demo stack exists and created an S3 bucket and EC2 instance.
