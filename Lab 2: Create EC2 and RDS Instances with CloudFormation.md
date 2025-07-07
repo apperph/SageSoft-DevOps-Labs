@@ -70,8 +70,39 @@ Leave all remaining configuration as default and create your VPC stack.
 Create a new file named ec2.yml.
 
 Copy the contents from the gist below:
+```
+Description:
+  Creates an Amazon EC2 instance in a public subnet.
 
-https://gist.github.com/carl-alarcon/780a488e9086aff3d32142c65895b0bb
+Parameters:
+  CloudFormationVPC:
+    Description: The CloudFormation Stack that contains the VPC and subnets.
+    Type: String
+  KeyPair:
+    Description: Key pair to use.
+    Type: "AWS::EC2::KeyPair::KeyName"
+  AmazonMachineImageId:
+    Description: AMI Image ID
+    Type: String
+    Default: ami-013168dc3850ef002
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref AmazonMachineImageId
+      InstanceType: t2.micro
+      KeyName: !Ref KeyPair
+      NetworkInterfaces:
+        - GroupSet:
+          - !ImportValue 
+            'Fn::Sub': '${CloudFormationVPC}-SecurityGroupID'
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          SubnetId: !ImportValue 
+            'Fn::Sub': '${CloudFormationVPC}-PublicSubnetID'
+```
+
 
 2-b. Upload ec2.yml to S3
 ```
