@@ -241,4 +241,9 @@ Copy and paste your information in this format:
   "rds_cloudformation_template_url": "https://s3.amazonaws.com/cdmp.<YOUR_NAME>/rds.yml"
 }
 ```
-
+Delete Your Resources
+```
+aws cloudformation delete-stack --stack-name VPC-charlie
+aws cloudformation delete-stack --stack-name EC2-charlie
+aws cloudformation delete-stack --stack-name rds-charlie
+```
