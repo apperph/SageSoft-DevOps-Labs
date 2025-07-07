@@ -91,7 +91,6 @@ For Step 2, enter these parameters:
 Stack Name: EC2-<YOUR_NAME>
 CloudFormationVPC: Name of your VPC stack (e.g., VPC-<YOUR_NAME>)
 KeyPair: Name of your EC2 key pair
-params-ec2
 ```
 
 Leave the remaining configuration as default.
