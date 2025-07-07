@@ -31,14 +31,12 @@ Replace `<YOUR_NAME>` with your own unique name.
 
 ```
 aws s3 mb s3://cdmp.<YOUR_NAME> --region ap-southeast-1
-s3-make-bucket
 ```
 
 1-c. Upload vpc-subnets.yml to Your S3 Bucket
 
 ```
 aws s3 cp vpc-subnets.yml s3://cdmp.<YOUR_NAME>
-upload-yml
 ```
 
 1-d. Get the S3 Object URL for the Template
