@@ -98,7 +98,8 @@ git push -u origin main
 ```
 Submission
 Copy and paste the following JSON in the submission box, replacing with your actual GitHub repository name:
-
+```
 {
   "github_repository_name": "cf-template-Lab1"
 }
+```
