@@ -23,8 +23,6 @@ This lab activity will demonstrate how to create an EC2 instance using AWS Cloud
 2. Copy the contents from the gist below and save to your file:  
    [https://gist.github.com/carl-alarcon/80fe39e66845cc9e3f7e85a155058818](https://gist.github.com/carl-alarcon/80fe39e66845cc9e3f7e85a155058818)
 
-   ![vpc-subnets-contents](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+5/image1.png)
-
 ---
 
 ### 1-b. Create an S3 Bucket to Store Your Templates
