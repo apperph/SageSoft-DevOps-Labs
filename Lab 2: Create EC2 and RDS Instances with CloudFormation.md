@@ -42,9 +42,6 @@ aws s3 cp vpc-subnets.yml s3://cdmp.<YOUR_NAME>
 1-d. Get the S3 Object URL for the Template
 
 Open the S3 console, browse to your bucket, select your vpc-subnets.yml, and copy the object URL.
-```
-get-object-url
-```
 
 1-e. Create the VPC Stack via CloudFormation Console
 
@@ -54,16 +51,12 @@ Click Create stack → With new resources (standard).
 
 For "Template source", select Amazon S3 URL and paste the copied S3 object URL.
 
-```
-cfn-upload-url
-```
 
 1-f. Enter Stack Details
 
 ```
 Stack name: VPC-<YOUR_NAME>
 EnvironmentName: Development-<YOUR_NAME>
-stack-details
 ```
 
 1-g. Create the Stack
