@@ -55,7 +55,8 @@ Copy the template from: https://github.com/mikerayco/cf-templates-demo/blob/mast
 
 3-b. Create a New Stack with the Dynamic Template
 
-```aws cloudformation create-stack --stack-name dynamic-demo --template-body file://dynamic-cf.yml
+```
+aws cloudformation create-stack --stack-name dynamic-demo --template-body file://dynamic-cf.yml
 ```
 
 3-c. Verify Stack Creation
