@@ -1,131 +1,78 @@
-## Overview:
+# Lab 1: Create a CloudFormation Stack (Static and Dynamic Template)
 
-This lab activity will demonstrate how to create a CloudFormation stack using the AWS CLI. Once you have finished the lab, you need to commit the CloudFormation template to a CodeCommit repository
+## Overview
 
-Prerequisite: 
-- This activity will require a Cloud9 IDE running on either Ubuntu or Amazon Linux 2.
+This lab activity demonstrates how to create CloudFormation stacks using the AWS CLI. Once you have finished the lab, you will commit the CloudFormation templates to a GitHub repository.
 
+---
 
-## 1. Create a CloudFormation stack.
+## Prerequisites
 
-1-a. Create a file named static-cf.yml, and copy the template from this URL: 
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured on your machine, EC2 instance, or via [AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/).
+- Permissions to create CloudFormation stacks, S3 buckets, and EC2 instances.
+- Access to a text editor (e.g., VS Code, nano, vim).
+- [GitHub account](https://github.com/) to create a repository.
 
-https://github.com/mikerayco/cf-templates-demo/blob/master/static-template.yml
+---
 
-Set the name of your bucket, add some random characters to the name of your bucket to make it unique.
+## 1. Create a CloudFormation Stack
 
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image1.png)
+### 1-a. Create the Static CloudFormation Template
 
-
-
-
-
-1-b. Run the command: 
-
-```
+1. In your terminal, create a file named `static-cf.yml`.
+2. Copy the template from:  
+   [https://github.com/mikerayco/cf-templates-demo/blob/master/static-template.yml](https://github.com/mikerayco/cf-templates-demo/blob/master/static-template.yml)
+3. Edit the S3 bucket name in the YAML file to make it unique by adding random characters.  
+   Example:
+   ```yaml
+   BucketName: your-stack-bucketname-xyz123
+1-b. Create the Stack
 aws cloudformation create-stack --stack-name cf-demo --template-body file://static-cf.yml
-```
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image2.png)
-
-
-1-c. Navigate back to the CloudFormation console and check your stack.
-
-It created an S3 bucket and EC2 instance.
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image3.png)
-
-
-
-
-
-
-
-
-## 2. Create a new stack using the same CloudFormation template
-
-2-a. Navigate back to the Cloud9 IDE and create a new stack using the same template by running this command: 
-
-```
+1-c. Validate Stack Creation
+Go to the CloudFormation Console.
+Confirm that the cf-demo stack exists and created an S3 bucket and EC2 instance.
+2. Attempt to Create a Second Stack with the Same Template
+2-a. Run This Command
 aws cloudformation create-stack --stack-name cf-demo2 --template-body file://static-cf.yml
-```
+Expected Result:
+You will receive an error because the S3 bucket name is not unique (S3 bucket names are globally unique).
 
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image4.png)
-
-
-
-You’ll see that there will be an error, the S3 namespace is universal and we cannot create a bucket name that is not unique.
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image5.png)
-
-
-Therefore the template we have used to create resources is considered static, although it works. We cannot reuse the template to create the same set of resources unless we rename it.
-
-
-
-
-## 3. Create a stack using a dynamic CloudFormation template.
-
-
-3-a. Navigate to your Cloud9 IDE and create a file named dynamic-cf.yml and paste the template from this url: 
-
-https://github.com/mikerayco/cf-templates-demo/blob/master/dynamic-template.yml
-
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image6.png)
-
-
-
-3-b. Create a stack by running this command: 
-
-```
+3. Create a Stack Using a Dynamic CloudFormation Template
+3-a. Create the Dynamic Template
+Create a file named dynamic-cf.yml.
+Copy the template from: https://github.com/mikerayco/cf-templates-demo/blob/master/dynamic-template.yml
+3-b. Create a New Stack with the Dynamic Template
 aws cloudformation create-stack --stack-name dynamic-demo --template-body file://dynamic-cf.yml
-```
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image7.png)
-
-3-c. Navigate to the CloudFormation console and check the stack. The stack was successfully created!
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image8.png)
-
-
-
-3-d. Create another stack using the same template by running this command: 
-
-```
+3-c. Verify Stack Creation
+Go to the CloudFormation Console and check the dynamic-demo stack.
+3-d. Create Another Stack with the Same Template
 aws cloudformation create-stack --stack-name dynamic-demo2 --template-body file://dynamic-cf.yml
-```
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image9.png)
+3-e. Confirm Success
+Check the dynamic-demo2 stack in the CloudFormation Console.
+The dynamic template allows multiple stacks by using unique resource names.
+4. Clean Up
+Delete All Stacks Before Completing the Lab:
 
+You can delete stacks using the AWS console or the CLI:
 
+aws cloudformation delete-stack --stack-name cf-demo
+aws cloudformation delete-stack --stack-name cf-demo2
+aws cloudformation delete-stack --stack-name dynamic-demo
+aws cloudformation delete-stack --stack-name dynamic-demo2
+5. Push Your Templates to GitHub
+Create a new public repository in your GitHub account named:
 
+cf-template-Lab1
+Initialize Git in your working directory, add both templates, and push to GitHub:
 
+git init
+git remote add origin https://github.com/YOUR_GITHUB_USER/cf-template-Lab1.git
+git add static-cf.yml dynamic-cf.yml
+git commit -m "Add CloudFormation templates for Lab 1"
+git push -u origin main
+Submission
+Copy and paste the following JSON in the submission box, replacing with your actual GitHub repository name:
 
-
-3-e. Navigate back to the CloudFormation console and check the recently created stack.
-
-
-![](https://sb-next-prod-image-bucket.s3.ap-southeast-1.amazonaws.com/public/CDMP/Session+1/Lab+2/image10.png)
-
-
-----------
-
-
-
-
-
-Well done!!!
-
-Please delete the stacks before ending this lab activity. Once you have deleted the stacks, create a repository in your github and use the naming convention: cf-template-<name>
-
-Then push the CloudFormation templates in the repository.
-
-Please copy and paste the JSON in the textbox below and supply the necessary information.
-
-
-```
 {
- "github_repository_name":""
+  "github_repository_name": "cf-template-Lab1"
 }
-```
-
