@@ -140,7 +140,7 @@ Create a new file called rds.yml in your workspace or local directory, and paste
 
 ```
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Create a MySQL RDS t2.micro instance
+Description: Create a MySQL RDS t3.micro instance
 
 Parameters:
   DBUsername:
@@ -164,15 +164,14 @@ Resources:
     Properties:
       DBSubnetGroupDescription: Subnet group for RDS instance
       SubnetIds:
-        # Replace with your private subnet IDs (inside your VPC)
-        - subnet-xxxxxx1
-        - subnet-xxxxxx2
+        - subnet-<># Make sure this is a private subnet in us-east-1a (for example)
+        - subnet-<> # And this is a private subnet in us-east-1b (for example)
 
   MySecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow MySQL access
-      VpcId: vpc-xxxxxx   # Replace with your VPC ID
+      VpcId: <> # Replace with your VPC ID
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
@@ -182,9 +181,11 @@ Resources:
   MyRDSInstance:
     Type: AWS::RDS::DBInstance
     Properties:
-      DBInstanceIdentifier: myrds-<YOUR_NAME>
+      DBInstanceIdentifier: myrds-<NAME>
       Engine: mysql
-      DBInstanceClass: db.t2.micro
+      # Optionally, specify a recent engine version. Otherwise, the latest available will be used.
+      # EngineVersion: 8.0.36
+      DBInstanceClass: db.t3.micro
       AllocatedStorage: 20
       MasterUsername: !Ref DBUsername
       MasterUserPassword: !Ref DBPassword
