@@ -84,7 +84,7 @@ Parameters:
   AmazonMachineImageId:
     Description: AMI Image ID
     Type: String
-    Default: ami-013168dc3850ef002
+    Default: ami-0c6ebb5b9bce4ba15
 
 Resources:
   EC2Instance:
