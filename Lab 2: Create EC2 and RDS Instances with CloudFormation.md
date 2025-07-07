@@ -67,20 +67,15 @@ Leave all remaining configuration as default and create your VPC stack.
 
 2-a. Prepare the EC2 CloudFormation Template
 
-```
 Create a new file named ec2.yml.
-```
 
 Copy the contents from the gist below:
-```
-https://gist.github.com/carl-alarcon/780a488e9086aff3d32142c65895b0bb 
-```
-ec2-template
+
+https://gist.github.com/carl-alarcon/780a488e9086aff3d32142c65895b0bb
 
 2-b. Upload ec2.yml to S3
 ```
 aws s3 cp ec2.yml s3://cdmp.<YOUR_NAME>
-upload-ec2-yml
 ```
 
 2-c. Launch the EC2 Stack in CloudFormation
